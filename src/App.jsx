@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, use } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Modal } from 'bootstrap';
 
@@ -141,7 +141,7 @@ function App() {
 
   const handleImageChange = (e, index) => {
     const {value} = e.target;
-    const newImages = [...tempProduct.imageUrl];
+    const newImages = [...tempProduct.imagesUrl];
     newImages[index] = value;
     setTempProduct({...tempProduct, imagesUrl:newImages});
   }
@@ -305,8 +305,10 @@ function App() {
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content border-0 shadow">
             <div className="modal-header border-bottom">
-              <h5 className="modal-title fs-4">{modalMode==='create'?'新增產品':'編輯產品'}</h5>
-              <button type="button" onClick={handleCloseProductModal} className="btn-close" aria-label="Close"></button>
+              <h5 className="modal-title fs-4">
+                {modalMode==='create'?'新增產品':'編輯產品'}</h5>
+              <button type="button" onClick={handleCloseProductModal} 
+                      className="btn-close" aria-label="Close"></button>
             </div>
 
             <div className="modal-body p-4">
@@ -536,6 +538,7 @@ function App() {
               <h1 className="modal-title fs-5">刪除產品</h1>
               <button
                 type="button"
+                onClick={handleCloseDelProductModal}
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
@@ -543,7 +546,8 @@ function App() {
             </div>
             <div className="modal-body">
               你是否要刪除 
-              <span className="text-danger fw-bold">{tempProduct.title}</span>
+              <span className="text-danger fw-bold">
+                {tempProduct.title}</span>
             </div>
             <div className="modal-footer">
               <button
